@@ -17,4 +17,16 @@ model User {
   email       String    @db.VarChar(50)
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
+  profile     Profile?
+}
+
+model Profile {
+  id                  Int       @id @default(autoincrement())
+  user                User      @relation(fields: [userId], references: [id])
+  userId              Int       @unique
+  display_name        String    @db.VarChar(100)
+  profile_pic_url     String
+  bio                 String    @db.VarChar(120)
+  createdAt           DateTime  @default(now())
+  updatedAt           DateTime  @updatedAt
 }
