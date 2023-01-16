@@ -67,6 +67,89 @@ async function seed() {
 		},
 	});
 
+	const createdComment1 = await prisma.comment.create({
+		data: {
+			content:
+				"I can't wait! So glad CR made an announcement about OGL before the new season - I was worried about it - but it's clear they're under NDA.",
+			user: {
+				connect: {
+					id: createdUser2.id,
+				},
+			},
+			post: {
+				connect: {
+					id: createdPost1.id,
+				},
+			},
+		},
+	});
+	const createdComment2 = await prisma.comment.create({
+		data: {
+			content:
+				"Yeah definitely removes any possible guilt in watching it. Are you looking forward to Vax's scene with everyone's favourite masked matron? :eyes:",
+			user: {
+				connect: {
+					id: createdUser1.id,
+				},
+			},
+			post: {
+				connect: {
+					id: createdPost1.id,
+				},
+			},
+		},
+	});
+
+	const createdComment3 = await prisma.comment.create({
+		data: {
+			content:
+				"Of course! There's some really great scenes I'm hoping have been animated, and I'm of course going to be playing spot the Mercer!",
+			user: {
+				connect: {
+					id: createdUser2.id,
+				},
+			},
+			post: {
+				connect: {
+					id: createdPost1.id,
+				},
+			},
+		},
+	});
+
+	const createdComment4 = await prisma.comment.create({
+		data: {
+			content: "What's happening for our session on Friday?",
+			user: {
+				connect: {
+					id: createdUser1.id,
+				},
+			},
+			post: {
+				connect: {
+					id: createdPost2.id,
+				},
+			},
+		},
+	});
+
+	const createdComment5 = await prisma.comment.create({
+		data: {
+			content:
+				"Don't worry, I'm working on converting everything over to Pathfinder now, we'll make it work!",
+			user: {
+				connect: {
+					id: createdUser2.id,
+				},
+			},
+			post: {
+				connect: {
+					id: createdPost2.id,
+				},
+			},
+		},
+	});
+
 	// Don't edit any of the code below this line
 	process.exit(0);
 }
