@@ -49,6 +49,24 @@ async function seed() {
     },
   });
 
+  const createdComment = await prisma.comment.create({
+    data: {
+      content:
+        "Great tips bro. Gonna put them into action asap, just need to get my army together lool",
+      user: {
+        create: {
+          username: "bromio",
+          email: "badasswarrior@hotmail.com",
+        },
+      },
+      post: {
+        connect: {
+          id: 2,
+        },
+      },
+    },
+  });
+
   // Don't edit any of the code below this line
   process.exit(0);
 }
