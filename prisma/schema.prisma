@@ -21,26 +21,39 @@ model User {
 }
 
 model Profile {
-  id              Int      @id @default(autoincrement())
-  User            User     @relation(fields: [user_id], references: [id])
-  user_id         Int      @unique
-  first_name      String   @db.VarChar(15)
-  last_name       String   @db.VarChar(15)
+  id              Int       @id @default(autoincrement())
+  User            User      @relation(fields: [user_id], references: [id])
+  user_id         Int       @unique
+  first_name      String    @db.VarChar(15)
+  last_name       String    @db.VarChar(15)
   profile_img_url String
-  bio             String?  @db.VarChar(120)
-  createdAt       DateTime @default(now())
-  updatedAt       DateTime @updatedAt
+  bio             String?   @db.VarChar(120)
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
   Post            Post[]
+  Comment         Comment[]
 }
 
 model Post {
-  id           Int      @id @default(autoincrement())
-  Profile      Profile  @relation(fields: [author_id], references: [id])
+  id           Int       @id @default(autoincrement())
+  Profile      Profile   @relation(fields: [author_id], references: [id])
   author_id    Int
-  title        String   @db.VarChar(60)
-  content      String   @db.VarChar(250)
+  title        String    @db.VarChar(60)
+  content      String    @db.VarChar(250)
   post_img_url String?
-  published    Boolean? @default(false)
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
+  published    Boolean?  @default(false)
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+  Comment      Comment[]
+}
+
+model Comment {
+  id        Int      @id @default(autoincrement())
+  Profile   Profile  @relation(fields: [author_id], references: [id])
+  author_id Int
+  Post      Post     @relation(fields: [post_id], references: [id])
+  post_id   Int
+  content   String   @db.VarChar(250)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }

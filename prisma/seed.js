@@ -81,6 +81,41 @@ async function seed() {
 		},
 	});
 
+	// Create Comments
+	await prisma.comment.create({
+		data: {
+			Profile: {
+				connect: { id: 1 },
+			},
+			Post: {
+				connect: { id: 3 },
+			},
+			content: "Congrats brother!",
+		},
+	});
+	await prisma.comment.create({
+		data: {
+			Profile: {
+				connect: { id: 2 },
+			},
+			Post: {
+				connect: { id: 3 },
+			},
+			content: "How much was it? 😳",
+		},
+	});
+	await prisma.comment.create({
+		data: {
+			Profile: {
+				connect: { id: 3 },
+			},
+			Post: {
+				connect: { id: 3 },
+			},
+			content: "It was cheap, i bought to fix 😁",
+		},
+	});
+
 	process.exit(0);
 }
 
