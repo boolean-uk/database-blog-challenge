@@ -18,10 +18,11 @@ This challenge is an opportunity to practice everything we've learned about data
 2. Create a new database instance in [ElephantSQL](https://www.elephantsql.com/).
 3. Edit the `DATABASE_URL` variable in `.env`, swapping `YOUR_DATABASE_URL` for the URL of the database you just created. Leave `?schema=prisma` at the end.
 4. Edit the `SHADOW_DATABASE_URL` variable in `.env`, swapping `YOUR_SHADOW_DATABASE_URL` for the URL of the **shadow database you created in the previous exercise**. Leave `?schema=shadow` at the end. (Note that if you create a new instance for your shadow database, you will need to create the `shadow` schema too.)
-6. Run `npm ci` to install the project dependencies.
-7. Run `npx prisma migrate reset` to execute the existing migration & data seed. Press `y` when it asks if you're sure.
+5. Run `npm ci` to install the project dependencies.
+6. Run `npx prisma migrate reset` to execute the existing migration & data seed. Press `y` when it asks if you're sure.
 
 ## Instructions
+
 - Work through each requirement in the `./requirements/` directory in numeric order
 - Add an image of your complete entity relationship diagram to the root directory of this repository
 
@@ -30,4 +31,4 @@ This challenge is an opportunity to practice everything we've learned about data
 Once you've completed every requirement, here are some additional challenges you should complete:
 
 1. Add a one-to-many self-relation to the Comment model to allow comments to have replies, and update the seed file to accomodate this change
-    - [Self-relations](https://www.prisma.io/docs/concepts/components/prisma-schema/relations/self-relations#one-to-many-self-relations)
+   - [Self-relations](https://www.prisma.io/docs/concepts/components/prisma-schema/relations/self-relations#one-to-many-self-relations)
