@@ -30,3 +30,13 @@ model Profile {
   createdAt           DateTime  @default(now())
   updatedAt           DateTime  @updatedAt
 }
+
+model Post {
+  id          Int       @id @default(autoincrement())
+  title       String    @db.VarChar(150)
+  content     String    @db.VarChar(225)
+  picture_url String?    
+  isPublished Boolean   @default(true)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
