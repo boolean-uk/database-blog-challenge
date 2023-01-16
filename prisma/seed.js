@@ -9,38 +9,78 @@ async function seed() {
 			{ username: "patrick", email: "patrick@email.com" },
 		],
 	});
-
-	const createdProfiles = await prisma.profile.createMany({
-		data: [
-			{
-				user_id: 1,
-				profile_img_url: "http://image.com/alice",
-				first_name: "Alice",
-				last_name: "Martin",
-				bio: "Bruh I am Alice what else you want to know 😁",
-			},
-			{
-				user_id: 2,
-				profile_img_url: "http://image.com/robert",
-				first_name: "Robert",
-				last_name: "John",
-				bio: "Bruh I am Robert what else you want to know 🧙‍♂️",
-			},
-			{
-				user_id: 3,
-				profile_img_url: "http://image.com/patrick",
-				first_name: "Patrick",
-				last_name: "Potato",
-				bio: "Bruh I am Patrick what else you want to know 💀",
-			},
-		],
-	});
-
 	console.log(`${createdUsers.count} users created`, createdUsers);
 
-	// Add your code here
+	// Creating 3 Profiles
+	await prisma.profile.create({
+		data: {
+			User: {
+				connect: { id: 1 },
+			},
+			profile_img_url: "http://image.com/alice",
+			first_name: "Alice",
+			last_name: "Martin",
+			bio: "Bruh I am Alice what else you want to know 😁",
+		},
+	});
+	await prisma.profile.create({
+		data: {
+			User: {
+				connect: { id: 2 },
+			},
+			profile_img_url: "http://image.com/robert",
+			first_name: "Robert",
+			last_name: "John",
+			bio: "Bruh I am Robert what else you want to know 🧙‍♂️",
+		},
+	});
+	await prisma.profile.create({
+		data: {
+			User: {
+				connect: { id: 3 },
+			},
+			profile_img_url: "http://image.com/patrick",
+			first_name: "Patrick",
+			last_name: "Potato",
+			bio: "Bruh I am Patrick what else you want to know 💀",
+		},
+	});
 
-	// Don't edit any of the code below this line
+	// Create Posts
+	await prisma.post.create({
+		data: {
+			Profile: {
+				connect: { id: 1 },
+			},
+			title: "Bruh",
+			content: "bad comments up there huh",
+			published: true,
+			// post_img_url: String
+		},
+	});
+	await prisma.post.create({
+		data: {
+			Profile: {
+				connect: { id: 2 },
+			},
+			title: "Hello there!",
+			content: "How was your day guys?",
+			// published: Boolean
+			// post_img_url: String
+		},
+	});
+	await prisma.post.create({
+		data: {
+			Profile: {
+				connect: { id: 3 },
+			},
+			title: "I BOUGHT A CAR",
+			content: "🚘🚘🚘🚘",
+			published: true,
+			post_img_url: "https://image.com/someImage",
+		},
+	});
+
 	process.exit(0);
 }
 

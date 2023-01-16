@@ -30,4 +30,17 @@ model Profile {
   bio             String?  @db.VarChar(120)
   createdAt       DateTime @default(now())
   updatedAt       DateTime @updatedAt
+  Post            Post[]
+}
+
+model Post {
+  id           Int      @id @default(autoincrement())
+  Profile      Profile  @relation(fields: [author_id], references: [id])
+  author_id    Int
+  title        String   @db.VarChar(60)
+  content      String   @db.VarChar(250)
+  post_img_url String?
+  published    Boolean? @default(false)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
 }
