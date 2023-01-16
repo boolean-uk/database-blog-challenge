@@ -3,7 +3,13 @@ const prisma = new PrismaClient();
 
 async function seed() {
 	const createdUsers = await prisma.user.createMany({
-		data: [{ username: "alicemartin" }, { username: "alicemartin" }],
+		data: [
+			{ username: "alicemarti" },
+			{ username: "robertjohn" },
+			{ username: "patrick" },
+			{ username: "bob" },
+			{ username: "thiagoo" },
+		],
 	});
 
 	console.log(`${createdUsers.count} users created`, createdUsers);
