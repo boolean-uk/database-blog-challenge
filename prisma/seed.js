@@ -2,12 +2,19 @@ const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 
 async function seed() {
-  const createdUser1 = await prisma.user.create({
-    data: { username: "alicem", email: "alice@gmail.com" },
-  });
+  //   const createdUser1 = await prisma.user.create({
+  //     data: { username: "alicem", email: "alice@gmail.com" },
+  //   });
 
-  const createdUser2 = await prisma.user.create({
-    data: { username: "joelzor", email: "joel@yahoo.co.uk", isAdmin: true },
+  //   const createdUser2 = await prisma.user.create({
+  //     data: { username: "joelzor", email: "joel@yahoo.co.uk", isAdmin: true },
+  //   });
+
+  const createdUsers = await prisma.user.createMany({
+    data: [
+      { username: "alicem", email: "alice@gmail.com" },
+      { username: "joelzor", email: "joel@yahoo.co.uk", isAdmin: true },
+    ],
   });
 
   // Add your code here
@@ -17,7 +24,7 @@ async function seed() {
       bio: "creater of the joelzor bloggosphere!",
       user: {
         connect: {
-          id: createdUser2.id,
+          id: 2,
         },
       },
     },
