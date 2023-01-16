@@ -19,6 +19,7 @@ model User {
   updatedAt   DateTime  @updatedAt
   profile     Profile?
   post        Post?
+  comment     Comment?
 }
 
 model Profile {
@@ -42,4 +43,14 @@ model Post {
   isPublished Boolean   @default(true)
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
+  comments    Comment[]    
+}
+
+model Comment {
+  id          Int       @id @default(autoincrement())
+  user        User      @relation(fields: [userId], references: [id])
+  post        Post      @relation(fields: [postId], references: [id])
+  userId      Int       @unique
+  postId      Int       @unique
+  content    String     @db.VarChar(250)
 }
