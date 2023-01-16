@@ -39,6 +39,34 @@ async function seed() {
 		},
 	});
 
+	const createdPost1 = await prisma.post.create({
+		data: {
+			title: "Me when I'm waiting for LoVM S2",
+			body: "",
+			isPublished: false,
+			MediaAttached: true,
+			user: {
+				connect: {
+					id: createdUser1.id,
+				},
+			},
+		},
+	});
+
+	const createdPost2 = await prisma.post.create({
+		data: {
+			title: "#OpenDnD",
+			body: "Join me in standing our ground against wotc to keep our creativity",
+			isPublished: true,
+			MediaAttached: true,
+			user: {
+				connect: {
+					id: createdUser2.id,
+				},
+			},
+		},
+	});
+
 	// Don't edit any of the code below this line
 	process.exit(0);
 }
