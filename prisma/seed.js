@@ -2,20 +2,42 @@ const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 
 async function seed() {
-	const createdUsers = await prisma.user.createMany({
-		data: [
-			{
-				username: "alicemartin",
-				email: "AMartin@ntlworld.com",
-				isAdmin: false,
-			},
-			{ username: "Dex491", email: "Dex@examplemail.com", isAdmin: true },
-		],
+	const createdUser1 = await prisma.user.create({
+		data: {
+			username: "AliceM101",
+			email: "AMartin@ntlworld.com",
+			isAdmin: false,
+		},
+	});
+	const createdUser2 = await prisma.user.create({
+		data: { username: "Dex491", email: "Dex@examplemail.com", isAdmin: true },
 	});
 
-	console.log(`${createdUsers.count} users created`, createdUsers);
+	console.log(`${createdUser1} & ${createdUser2} user created`);
 
 	// Add your code here
+	const createdProfile1 = await prisma.profile.create({
+		data: {
+			profilePic: "idk-cat-pic.png",
+			bio: "Live, laugh, loathe",
+			user: {
+				connect: {
+					id: createdUser1.id,
+				},
+			},
+		},
+	});
+	const createdProfile2 = await prisma.profile.create({
+		data: {
+			profilePic: "https://i.imgur.com/r3bpsYA.jpg",
+			bio: "'Gamers aren't oppressed, but they should be.' - Martin Lex Luther King",
+			user: {
+				connect: {
+					id: createdUser2.id,
+				},
+			},
+		},
+	});
 
 	// Don't edit any of the code below this line
 	process.exit(0);
