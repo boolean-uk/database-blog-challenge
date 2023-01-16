@@ -12,17 +12,19 @@ async function seed() {
   console.log(`${createdUsers.count} users created`, createdUsers);
 
   // Add your code here
-  const createdProfile = await prisma.profile.create({
+  const createdProfile = await prisma.profile.createMany({
     data: [
       {
-        user: {
-          connect: {
-            userId: createdUsers.id,
-          },
-        },
+        userId: 1,
         display_name: "alison the greatest",
         profile_pic_url: "cat.jpeg",
         bio: "I love to bake and spend time with my cat Gus",
+      },
+      {
+        userId: 2,
+        display_name: "Martin Smith",
+        profile_pic_url: "lake_pic.jpeg",
+        bio: "Avid hiker + lover of lakes",
       },
     ],
   });
