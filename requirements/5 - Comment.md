@@ -1,6 +1,7 @@
 # Comment
 
 A comment should have, as a minimum, these fields:
+
 - An auto incrementing ID
 - A created at date & time, defaulting to the moment the record gets created
 - An updated at date & time
