@@ -18,6 +18,7 @@ model User {
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
   profile     Profile?
+  post        Post?
 }
 
 model Profile {
@@ -33,6 +34,8 @@ model Profile {
 
 model Post {
   id          Int       @id @default(autoincrement())
+  user        User      @relation(fields: [userId], references: [id])
+  userId      Int       @unique
   title       String    @db.VarChar(150)
   content     String    @db.VarChar(225)
   picture_url String?    
