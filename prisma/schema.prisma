@@ -19,6 +19,7 @@ model User {
   email       String    @unique
   isAdmin     Boolean   @default(false)
   profile     Profile?
+  posts       Post[]
 }
 
 model Profile {
@@ -29,4 +30,16 @@ model Profile {
   bio         String    @db.VarChar(120)
   user        User @relation(fields: [userId], references: [id])
   userId      Int @unique
+}
+
+model Post {
+  id          Int       @id @default(autoincrement())
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  title       String    @db.VarChar(150)
+  body        String    @db.VarChar(255)
+  published   Boolean   @default(false)
+  pictureURL  String?
+  user        User @relation(fields: [userId], references: [id])
+  userId      Int
 }
