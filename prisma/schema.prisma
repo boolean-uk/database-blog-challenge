@@ -44,6 +44,7 @@ model Post {
   user        User @relation(fields: [userId], references: [id])
   userId      Int
   comments    Comment[]
+  tags        Tag[]
 }
 
 model Comment {
@@ -55,4 +56,15 @@ model Comment {
   userId      Int
   post        Post @relation(fields: [postId], references: [id])
   postId      Int
+  replyId     Int?
+  reply       Comment? @relation("replies", fields: [replyId], references: [id])
+  replies     Comment[] @relation("replies")
+}
+
+model Tag {
+  id          Int      @id @default(autoincrement())
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  name        String    @unique
+  posts       Post[]
 }

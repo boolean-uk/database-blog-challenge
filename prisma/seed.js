@@ -49,6 +49,41 @@ async function seed() {
     },
   });
 
+  const createdTags = await prisma.tag.createMany({
+    data: [
+      { name: "news" },
+      { name: "food" },
+      { name: "media" },
+      { name: "ranking" },
+    ],
+  });
+
+  const createdPost3 = await prisma.post.create({
+    data: {
+      title: "My ranking of breakfast cereals",
+      body: "I will now list the definitive version of breakfast cereals. You may disagree with this list, but you would be wrong.",
+      published: true,
+      tags: {
+        connect: [
+          {
+            id: 2,
+          },
+          {
+            id: 4,
+          },
+        ],
+        create: {
+          name: "cereal",
+        },
+      },
+      user: {
+        connect: {
+          id: 2,
+        },
+      },
+    },
+  });
+
   const createdComment = await prisma.comment.create({
     data: {
       content:
