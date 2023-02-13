@@ -21,7 +21,7 @@
   },
   "homepage": "https://github.com/boolean-uk/blog-domain-challenge-1#readme",
   "dependencies": {
-    "@prisma/client": "^3.8.1",
+    "@prisma/client": "^4.10.1",
     "prisma": "^3.8.1"
   }
 }
