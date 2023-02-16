@@ -44,6 +44,8 @@ async function seed() {
       content: "Arsenal is 8 points ahead of man utd game this sunday",
     },
   });
+  console.log("comment created:", createComment);
+
   // Don't edit any of the code below this line
   process.exit(0);
 }
