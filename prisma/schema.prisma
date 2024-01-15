@@ -20,6 +20,7 @@ model User {
   age         Int
   profile     Profile?
   posts       Post[]
+  comments    Comment[]
 }
 
 model Profile {
@@ -42,6 +43,18 @@ model Post {
   content         String    @db.VarChar(255)
   isPublished     Boolean   
   picture         String  
-  userId          Int       @unique
+  userId          Int       
+  user            User      @relation(fields: [userId], references: [id])
+  comments        Comment[]
+}
+
+model Comment {
+  id              Int       @id @default(autoincrement())
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+  content         String    @db.VarChar(255)
+  postId          Int       
+  userId          Int
+  post            Post      @relation(fields: [postId], references: [id])
   user            User      @relation(fields: [userId], references: [id])
 }
