@@ -11,6 +11,18 @@ datasource db {
   shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
 }
 
+model Post{
+  id        Int        @id @default(autoincrement())
+  userId    Int        @unique
+  user      User       @relation(fields: [userId], references: [id])
+  title     String     @db.VarChar(150)
+  content   String     @db.VarChar(255)
+  published Boolean    @default(false)
+  picUrl    String?
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+}
+
 model User {
   id          Int         @id @default(autoincrement())
   username    String      @db.VarChar(10)
@@ -33,13 +45,3 @@ model Profile {
   updatedAt     DateTime    @updatedAt
 }
 
-model POST {
-    id        Int        @id @default(autoincrement())
-    userId    Int        @unique
-    title     String     @db.VarChar(150)
-    content   String     @db.VarChar(255)
-    published Boolean    @default(false)
-    picUrl    String?
-    createdAt DateTime   @default(now())
-    updatedAt DateTime   @updatedAt
-}
