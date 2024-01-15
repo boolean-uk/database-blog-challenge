@@ -19,6 +19,7 @@ model User {
   email       String    @unique
   age         Int
   profile     Profile?
+  posts       Post[]
 }
 
 model Profile {
@@ -26,9 +27,21 @@ model Profile {
   createdAt       DateTime  @default(now())
   updatedAt       DateTime  @updatedAt
   profilePicture  String    
-  bio             String    
+  bio             String    @db.VarChar(120)
   firstName       String
   lastName        String
+  userId          Int       @unique
+  user            User      @relation(fields: [userId], references: [id])
+}
+
+model Post {
+  id              Int       @id @default(autoincrement())
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+  title           String    @db.VarChar(150)
+  content         String    @db.VarChar(255)
+  isPublished     Boolean   
+  picture         String  
   userId          Int       @unique
   user            User      @relation(fields: [userId], references: [id])
 }
