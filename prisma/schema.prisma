@@ -48,12 +48,15 @@ model Profile {
 }
 
 model Comment {
-  id          Int         @id @default(autoincrement())
-  userId      Int         
-  user        User        @relation(fields: [userId], references: [id])
-  postId      Int         
-  post        Post        @relation(fields: [postId], references: [id])
-  content     String      @db.VarChar(250)
-  createdAt   DateTime    @default(now())
-  updatedAt   DateTime    @updatedAt
+  id              Int         @id @default(autoincrement())
+  userId          Int         
+  user            User        @relation(fields: [userId], references: [id])
+  postId          Int         
+  post            Post        @relation(fields: [postId], references: [id])
+  commentId       Int?
+  originalComment Comment?    @relation("CommentResponse", fields: [commentId], references: [id])
+  responses       Comment[]   @relation("CommentResponse")
+  content         String      @db.VarChar(250)
+  createdAt       DateTime    @default(now())
+  updatedAt       DateTime    @updatedAt
 }
