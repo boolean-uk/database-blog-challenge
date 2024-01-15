@@ -30,4 +30,17 @@ model Profile {
   updatedAt   DateTime @updatedAt
   user        User     @relation(fields: [user_id], references: [id])
   user_id     Int      @unique
+  posts       Post[]
+}
+
+model Post {
+  id          Int      @id @default(autoincrement())
+  title       String   @db.VarChar(150)
+  content     String
+  is_publish  Boolean  @default(false)
+  picture_url String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  Profile     Profile? @relation(fields: [profileId], references: [id])
+  profileId   Int?
 }

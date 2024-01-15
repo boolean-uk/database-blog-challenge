@@ -36,6 +36,26 @@ async function seed() {
         connect: {
           id: 1
         }
+      },
+      posts: {
+        createMany: {
+          data: [
+            {
+              title: 'Post 1',
+              content: 'Content 1',
+              picture_url: 'Picture url 1'
+            },
+            {
+              title: 'Post 2',
+              content: 'Content 2'
+            },
+            {
+              title: 'Post 3',
+              content: 'Content 3',
+              picture_url: 'Picture url 3'
+            }
+          ]
+        }
       }
     }
   })
@@ -47,6 +67,13 @@ async function seed() {
       user: {
         connect: {
           id: 2
+        }
+      },
+      posts: {
+        create: {
+          title: 'Post of Bob',
+          content: 'Content for post of Bob',
+          picture_url: 'Picture url of bob'
         }
       }
     }
@@ -69,6 +96,18 @@ async function seed() {
     createProfile2,
     createProfile3
   ])
+
+  const createPost = await prisma.post.create({
+    data: {
+      title: 'Post of Bob',
+      content: 'Content for post of Bob',
+      picture_url: 'Picture url of bob',
+      is_publish: true,
+      profileId: 3
+    }
+  })
+
+  console.log('Created post of user 3', createPost)
 
   // Don't edit any of the code below this line
   process.exit(0)
