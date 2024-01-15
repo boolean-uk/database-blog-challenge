@@ -12,8 +12,49 @@ datasource db {
 }
 
 model User {
-  id          Int       @id @default(autoincrement())
-  username    String
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
+  id        Int       @id @default(autoincrement())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  userName  String    @unique @db.VarChar(10)
+  email     String    @unique @db.VarChar(255)
+  Profile   Profile?
+  Posts     Post[]
+  Comments  Comment[]
+}
+
+model Profile {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  avatarUrl String   @db.VarChar(255)
+  bio       String   @db.VarChar(120)
+  userId    Int      @unique
+  User      User     @relation(fields: [userId], references: [id])
+}
+
+model Post {
+  id         Int       @id @default(autoincrement())
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+  title      String    @db.VarChar(150)
+  content    String    @db.VarChar(250)
+  published  Boolean   @default(true)
+  pictureUrl String    @db.VarChar(255)
+  userId     Int
+  User       User      @relation(fields: [userId], references: [id])
+  Comments   Comment[]
+}
+
+model Comment {
+  id              Int       @id @default(autoincrement())
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+  content         String    @db.VarChar(250)
+  userId          Int
+  postId          Int
+  parentCommentId Int?
+  User            User      @relation(fields: [userId], references: [id])
+  Post            Post      @relation(fields: [postId], references: [id], onDelete: Cascade)
+  ParentComment   Comment?  @relation("ParentChildComments", fields: [parentCommentId], references: [id])
+  ChildComment    Comment[] @relation("ParentChildComments")
 }

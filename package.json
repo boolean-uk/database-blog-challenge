@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": ""
+    "start": "",
+    "db:watchSchema": "npx prisma generate --watch"
   },
   "prisma": {
     "seed": "node prisma/seed.js"
@@ -21,6 +22,8 @@
   },
   "homepage": "https://github.com/boolean-uk/blog-domain-challenge-1#readme",
   "devDependencies": {
+    "@faker-js/faker": "^8.3.1",
+    "@types/node": "^20.11.2",
     "prisma": "^5.7.1"
   },
   "dependencies": {
