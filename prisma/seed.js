@@ -30,6 +30,23 @@ async function seed() {
 
   console.log(`${createdProfile.count} profile created`, createdProfile);
 
+  const createdPost = await prisma.post.createMany({
+    data:[
+        {
+            title: "i love code",
+            content: "this is my new post",
+            authorId: 1
+        },
+        {
+            title: "i hate code",
+            content: "this is my last post",
+            authorId: 2
+        }
+    ]
+  })
+
+  console.log(`${createdPost.count} post created`, createdPost)
+
   // Don't edit any of the code below this line
   process.exit(0);
 }
