@@ -12,7 +12,7 @@ async function seed() {
     console.log(`${createdUsers.count} users created`, createdUsers);
 
     // Add your code here
-
+    
     
 
 
