@@ -143,7 +143,7 @@ async function seed() {
                 connect: {id: 1}
             },
             post: {
-                connect: {id: 3}
+                connect: {id: 4}
             }
         }
     })
