@@ -2,6 +2,7 @@ const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 
 async function seed() {
+    // USERS
     const createdUsers = await prisma.user.createMany({
         data: [
             { username: 'AliceM', password: 'test1', email: 'test@1.com' },
@@ -12,6 +13,7 @@ async function seed() {
 
     // console.log(`${createdUsers.count} users created`, createdUsers);
     
+    // PROFILES
     const createdProfile1 = await prisma.profile.create({
         data: { 
             first_name: 'Alice', 
@@ -45,6 +47,76 @@ async function seed() {
             display_name: 'JohnD',
             profile_picture: 'https://www.an_image.com',
             bio: 'Good day!',
+            user: {
+                connect: {id: 3}
+            }
+        }
+    })
+
+    // POSTS
+    const createdPost1 = await prisma.post.create({
+        data: { 
+            title: 'My post', 
+            content: 'post 1', 
+            is_published: false,
+            picture_url: 'https://www.an_image.com',
+            user: {
+                connect: {id: 1}
+            }
+        }
+    })
+    const createdPost2 = await prisma.post.create({
+        data: { 
+            title: 'My post 2', 
+            content: 'post 2', 
+            is_published: true,
+            picture_url: 'https://www.an_image.com',
+            user: {
+                connect: {id: 1}
+            }
+        }
+    })
+
+    const createdPost3 = await prisma.post.create({
+        data: { 
+            title: 'Nothing beats a bit of turbo power', 
+            content: 'Try this new Cillit Bang product', 
+            is_published: true,
+            picture_url: 'https://www.new_cillit_bang_ WOW.com',
+            user: {
+                connect: {id: 2}
+            }
+        }
+    })
+    const createdPost4 = await prisma.post.create({
+        data: { 
+            title: 'Why you should trust me, Barry Scott', 
+            content: 'BANG, and the dirt is gone', 
+            is_published: false,
+            picture_url: 'https://www.bangandthedirtisgone.com',
+            user: {
+                connect: {id: 2}
+            }
+        }
+    })
+
+    const createdPost5 = await prisma.post.create({
+        data: { 
+            title: 'Has anyone seen Jane Doe?', 
+            content: 'Hello all...', 
+            is_published: true,
+            picture_url: 'https://www.an_image.com',
+            user: {
+                connect: {id: 3}
+            }
+        }
+    })
+    const createdPost6 = await prisma.post.create({
+        data: { 
+            title: 'Testing one...two...three', 
+            content: 'Goodbye all...', 
+            is_published: false,
+            picture_url: 'https://www.an_image.com',
             user: {
                 connect: {id: 3}
             }
