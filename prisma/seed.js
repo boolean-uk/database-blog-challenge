@@ -40,6 +40,68 @@ async function seed() {
   });
   console.log("number of newly created profiles: ", createdProfiles);
 
+  const createdPosts = await prisma.post.createMany({
+    data: [
+      {
+        userId: 1,
+        title: "witty title",
+        content:
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed malesuada odio magna, ut interdum dui accumsan",
+      },
+      {
+        userId: 1,
+        title: "wittier title",
+        content:
+          "odit aut eveniet nobis id alias obcaecati quo nisi distinctio et nemo atque et doloremque voluptate ut accusamus iusto ",
+      },
+      {
+        userId: 2,
+        title: "the wittiest title",
+        content:
+          "Sed voluptatem illum qui obcaecati nesciunt 33 voluptatem dolorem.",
+      },
+      {
+        userId: 2,
+        title: "wanna-be-witty title",
+        content:
+          "Qui voluptatem possimus qui consequatur nostrum vel doloribus itaque",
+      },
+      {
+        userId: 3,
+        title: "title",
+        content:
+          "Et placeat dolores quo quos voluptate ea internos suscipit cum quas neque.",
+      },
+      {
+        userId: 3,
+        title: "another title",
+        content:
+          "Et fugit excepturi aut labore consectetur rem explicabo possimus.",
+      },
+    ],
+  });
+  console.log(createdPosts)
+  const createdComments = await prisma.comment.createMany({
+    data: [
+      {
+        userId: 1,
+        postId: 4,
+        content:
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed malesuada odio magna, ut interdum dui accumsan",
+      },
+      {
+        userId: 2,
+        postId: 1,
+        content:
+          "odit aut eveniet nobis id alias obcaecati quo nisi distinctio et nemo atque et doloremque voluptate ut accusamus iusto ",
+      },
+      {
+        userId: 3,
+        postId: 5,
+        content:
+          "Sed voluptatem illum qui obcaecati nesciunt 33 voluptatem dolorem.",
+      },]
+  });
   console.log(createdComments)
   process.exit(0);
 }
