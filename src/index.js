@@ -47,8 +47,8 @@ async function deletePost() {
     console.log(deletePostWithId3);
 }
 
-// getAllUsers()
-// getPosts()
-// getUser1WithProfile()
-// UpdatePost()
-deletePost();
+getAllUsers()
+getPosts()
+getUser1WithProfile()
+UpdatePost()
+deletePost()
