@@ -18,7 +18,9 @@ const main = async () => {
       content: "new text",
     },
   });
-  // Update the post with ID 1 so that its text/content is different from what was created in the seed file
+  const deletePostTwo = await prisma.post.delete({
+    where: { id: 2 },
+  });
   // Delete the post with ID 3
 };
 main();
