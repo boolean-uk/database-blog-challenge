@@ -103,6 +103,33 @@ async function seed() {
       },]
   });
   console.log(createdComments)
+
+  const createdCommentResponses = await prisma.comment.createMany({
+    data: [
+      {
+        userId: 1,
+        postId: 4,
+        commentId:2,
+        content:
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed malesuada odio magna, ut interdum dui accumsan",
+      },
+      {
+        userId: 1,
+        postId: 4,
+        commentId:2,
+        content:
+          "odit aut eveniet nobis id alias obcaecati quo nisi distinctio et nemo atque et doloremque voluptate ut accusamus iusto ",
+      },
+      {
+        userId: 3,
+        postId: 5,
+        commentId:2,
+        content:
+          "Sed voluptatem illum qui obcaecati nesciunt 33 voluptatem dolorem.",
+      },]
+  });
+  console.log(createdCommentResponses)
+
   process.exit(0);
 }
 

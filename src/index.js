@@ -18,9 +18,12 @@ const main = async () => {
       content: "new text",
     },
   });
-  const deletePostTwo = await prisma.post.delete({
-    where: { id: 2 },
-  });
-  // Delete the post with ID 3
+  // const deletePostTwo = await prisma.post.delete({
+  //   where: { id: 2 },
+  // });
+  const getCommentsWithReponses = await prisma.comment.findMany({
+    include:{responses: true}
+  })
+  console.log(getCommentsWithReponses, getCommentsWithReponses[1],getCommentsWithReponses[1].responses)
 };
 main();
