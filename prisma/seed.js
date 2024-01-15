@@ -123,6 +123,43 @@ async function seed() {
         }
     })
 
+    // COMMENTS
+    const createdComment1 = await prisma.comment.create({
+        data: { 
+            content: 'Commenting on my own post', 
+            user: {
+                connect: {id: 1}
+            },
+            post: {
+                connect: {id: 2}
+            }
+        }
+    })
+
+    const createdComment2 = await prisma.comment.create({
+        data: { 
+            content: 'Hi Barry Scott, massive fan. Love the effectiveness of your Cillit Bang at getting rid of that stubbon limescale. BANG, and the dirt is gone!', 
+            user: {
+                connect: {id: 1}
+            },
+            post: {
+                connect: {id: 3}
+            }
+        }
+    })
+
+    const createdComment3 = await prisma.comment.create({
+        data: { 
+            content: 'Hello John, if you cannot find Jane Doe, I promise it wasn\'t the Cillit Bang which made her disappear. It\'s good for getting rid of limescale, not people.', 
+            user: {
+                connect: {id: 2}
+            },
+            post: {
+                connect: {id: 5}
+            }
+        }
+    })
+
     // Don't edit any of the code below this line
     process.exit(0);
 }

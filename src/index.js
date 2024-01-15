@@ -8,7 +8,10 @@ async function main() {
 //   console.log('all profiles', getProfiles);
 
 const getPosts = await prisma.post.findMany();
-  console.log('all posts', getPosts);
+//   console.log('all posts', getPosts);
+
+const getComments = await prisma.comment.findMany();
+  console.log('all comments', getComments);
 }
 
 main()
