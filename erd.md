@@ -27,7 +27,6 @@ PROFILE {
     string      firstName
     string      lastName
     string      biography   
-    dateTime    dob        
     string      profilePicUrl 
     dateTime    createdAt
     dateTime    updatedAt 
