@@ -15,7 +15,7 @@ USER {
 }
 COMMENT {
     int         id          PK
-    string      text
+    content     text
     int         Id      FK
     int         userId      FK
     dateTime    createdAt
