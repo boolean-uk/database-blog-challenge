@@ -1,2 +1,9 @@
 const { PrismaClient } = require('@prisma/client')
-const prisma = new PrismaClient()
+const { user, profile, post, comment } = new PrismaClient()
+
+module.exports = {
+  user,
+  profile,
+  post,
+  comment
+}
