@@ -33,10 +33,10 @@ PROFILE {
 }
 POST {
     int         id          PK
+    int         userId      FK
     string      title       
     string      content     
     boolean     published    
-    int         Id          FK
     string      picUrl                 
     dateTime    createdAt
     dateTime    updatedAt 
