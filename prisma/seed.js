@@ -39,6 +39,16 @@ async function seed() {
 
   console.log("User with profile created", createdUserWithProfile);
 
+  const createdPost = await prisma.post.create({
+    data: {
+      title: "Why lemons are the best fruit",
+      content: "Lemons are the best fruit for many reasons.",
+      userId: 4,
+    },
+  });
+
+  console.log("Post for user created", createdPost);
+
   // Don't edit any of the code below this line
   process.exit(0);
 }

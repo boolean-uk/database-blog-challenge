@@ -16,7 +16,8 @@ model User {
   username    String    @db.VarChar(10) @unique
   email       String    @unique
   password    String?
-  profile     Profile?    
+  profile     Profile?
+  posts       Post[]    
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
 }
@@ -26,6 +27,18 @@ model Profile {
   bio String @db.VarChar(120)
   pro_pic_url String?
   userId Int @unique
+  user User @relation(fields: [userId], references: [id])
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+model Post {
+  id Int @id @default(autoincrement())
+  title String @db.VarChar(150)
+  content String
+  isPublished Boolean @default(false)
+  picture_url String?
+  userId Int
   user User @relation(fields: [userId], references: [id])
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
