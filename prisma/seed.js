@@ -6,6 +6,7 @@ async function seed() {
     data: [
       { username: "alice10", email: "alice@example.com" },
       { username: "bobsmith", email: "bob@example.com" },
+      { username: "calhay", email: "cal@example.com" },
     ],
   });
 
@@ -25,6 +26,11 @@ async function seed() {
         userId: 2,
         profilePic: "http://example.com/bob_pic.jpg",
       },
+      {
+        bio: "Biography of cal",
+        userId: 3,
+        profilePic: "http://example.com/cal_pic.jpg",
+      },
     ],
   });
 
@@ -34,13 +40,33 @@ async function seed() {
     data: [
       {
         title: "i love code",
-        content: "this is my new post",
+        content: "this is my new post about html",
         authorId: 1,
+      },
+      {
+        title: "i love code",
+        content: "this is my new post about javascript",
+        authorId: 1,
+      },
+      {
+        title: "i hate code",
+        content: "this is my new post about css",
+        authorId: 2,
       },
       {
         title: "i hate code",
         content: "this is my last post",
         authorId: 2,
+      },
+      {
+        title: "i love games",
+        content: "star wars games are cool",
+        authorId: 3,
+      },
+      {
+        title: "i love games",
+        content: "god of war is cool",
+        authorId: 3,
       },
     ],
   });
@@ -49,20 +75,25 @@ async function seed() {
 
   const createdComment = await prisma.comment.createMany({
     data: [
-        {
-            text: "i love coding javascript",
-            postId: 1,
-            authorId: 1,
-        },
       {
-        text: "i hate coding javascript",
-        postId: 2,
+        text: "Hi, im liking this post",
+        postId: 1,
         authorId: 2,
-      }
+      },
+      {
+        text: "Hi, I dont like this post",
+        postId: 2,
+        authorId: 3,
+      },
+      {
+        text: "Hi, I like commenting on anything",
+        postId: 3,
+        authorId: 1,
+      },
     ],
   });
 
-  console.log(`${createdComment.count} comment created`, createdComment)
+  console.log(`${createdComment.count} comment created`, createdComment);
   // Don't edit any of the code below this line
   process.exit(0);
 }
