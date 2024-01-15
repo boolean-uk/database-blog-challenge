@@ -47,7 +47,7 @@ model Post {
 
 model Comment {
   id        Int      @id @default(autoincrement())
-  text      String
+  text      String   @db.VarChar(250)
   postId    Int
   post      Post     @relation(fields: [postId], references: [id])
   authorId  Int
