@@ -6,4 +6,11 @@ const getAllUsers = async () => {
   return data
 }
 
+const getPostsByUserId = async (userId) => {
+  const data = await post.findMany({ where: { profileId: userId } })
+  console.log(data)
+  return data
+}
+
 getAllUsers()
+getPostsByUserId(2)
