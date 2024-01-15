@@ -45,7 +45,35 @@ async function seed() {
     }),
   });
 
-  console.log(comments)
+  const commentWithChildren = await prisma.comment.create({
+    data: {
+      content: faker.lorem.sentence(),
+      User: {
+        connect: {
+          id: faker.number.int({ min: 1, max: userNumber }),
+        },
+      },
+      Post: {
+        connect: {
+          id: 1,
+        },
+      },
+      ChildComment: {
+        createMany: {
+          data: Array.from({ length: 10 }, () => {
+            return {
+              content: faker.lorem.sentence(),
+              userId: faker.number.int({ min: 1, max: userNumber }),
+              postId: 1,
+            };
+          }),
+        },
+      },
+    },
+  });
+
+  console.log(comments);
+  console.log(commentWithChildren);
 
   // Don't edit any of the code below this line
   process.exit(0);
