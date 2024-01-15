@@ -6,6 +6,7 @@ async function seed() {
     data: [
       { username: "alice12", email: "alice12@gmail.com" },
       { username: "mikey", email: "mikey@gmail.com" },
+      { username: "mikeyaw", email: "miawdawdawdy@gmail.com" },
     ],
   });
 
@@ -27,6 +28,10 @@ async function seed() {
         profilePictureUrl:
           "https://d27jswm5an3efw.cloudfront.net/app/uploads/2019/08/image-url-3.jpg",
       },
+      {
+        bio: "adawdawd",
+        userId: 3,
+      },
     ],
   });
 
@@ -44,6 +49,26 @@ async function seed() {
         content: "Hi this is my post!!!!! Wiooooo",
         authorId: 2,
       },
+      {
+        title: "This is my post hehe!!!",
+        content: "Hi t!!!! poawdwdoo",
+        authorId: 1,
+      },
+      {
+        title: "This is myadawd hehe!!!",
+        content: "Hi this is my poawdwdoo",
+        authorId: 2,
+      },
+      {
+        title: "Thisawdwat hehe!!!",
+        content: "Hi thisawdawwdwdoo",
+        authorId: 1,
+      },
+      {
+        title: "This is my poadwadehe!!!",
+        content: "Hi awdwddwdoo",
+        authorId: 3,
+      },
     ],
   });
 
@@ -54,12 +79,17 @@ async function seed() {
       {
         text: "Hi, I'm a commenter",
         postId: 1,
-        authorId: 1,
+        authorId: 2,
       },
       {
         text: "Hi, I like commenting on stuff",
         postId: 2,
-        authorId: 2,
+        authorId: 3,
+      },
+      {
+        text: "Hi, I like commenting on stuff",
+        postId: 3,
+        authorId: 1,
       },
     ],
   });
