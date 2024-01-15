@@ -103,11 +103,29 @@ async function seed() {
       content: 'Content for post of Bob',
       picture_url: 'Picture url of bob',
       is_publish: true,
-      profileId: 3
+      profileId: 3,
+      comments: {
+        createMany: {
+          data: [
+            { content: 'Content of comment 1' },
+            { content: 'Content of comment 2' },
+            { content: 'Content of comment 3' }
+          ]
+        }
+      }
     }
   })
 
   console.log('Created post of user 3', createPost)
+
+  const createComment = await prisma.comment.create({
+    data: {
+      content: 'Content of comment for post 2',
+      postId: 2
+    }
+  })
+
+  console.log('Created comment', createComment)
 
   // Don't edit any of the code below this line
   process.exit(0)
