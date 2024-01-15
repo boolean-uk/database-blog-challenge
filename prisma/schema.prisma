@@ -26,15 +26,16 @@ model User {
 
 
 model Profile {
-  id           Int       @id @default(autoincrement())
-  first_name   String
-  last_name    String?
-  display_name String
-  bio          String?
-  createdAt    DateTime  @default(now())
-  updatedAt    DateTime  @updatedAt
-  user_id      Int       @unique
-  user         User      @relation(fields: [user_id], references: [id])
+  id              Int       @id @default(autoincrement())
+  first_name      String
+  last_name       String?
+  display_name    String
+  profile_picture String
+  bio             String?   @db.VarChar(120)
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+  user_id         Int       @unique
+  user            User      @relation(fields: [user_id], references: [id])
 }
 
 model Post {
