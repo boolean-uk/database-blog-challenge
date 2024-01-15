@@ -22,7 +22,7 @@
   },
   "homepage": "https://github.com/boolean-uk/blog-domain-challenge-1#readme",
   "devDependencies": {
-    "@fakerjs/faker": "^3.0.0",
+    "@faker-js/faker": "^8.3.1",
     "@types/node": "^20.11.2",
     "prisma": "^5.7.1"
   },
