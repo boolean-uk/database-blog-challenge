@@ -10,7 +10,7 @@ const Main = async () => {
     },
   });
 
-  const userWithProfile = await prisma.user.findUnique({
+  await prisma.user.findUnique({
     where: {
       id: 1,
     },
@@ -24,7 +24,28 @@ const Main = async () => {
     },
   });
 
-  console.log(userWithProfile);
+  await prisma.post.update({
+    where: { id: 1 },
+    data: {
+      title: "Updated title",
+      content: "updated content",
+      isPublished: false,
+    },
+  });
+
+  await prisma.post.delete({
+    where: {
+      id: 3,
+    },
+  });
+
+  const deleteWithAnd = await prisma.user.deleteMany({
+    where: {
+      AND: [{ username: "alicemartin" }, { email: { contains: "@mail.com" } }],
+    },
+  });
+
+  console.log(deleteWithAnd);
 };
 
 Main();
