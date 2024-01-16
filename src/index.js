@@ -14,7 +14,7 @@ async function getPosts() {
     console.log(getPostsFromUsersWithId2);
 }
 
-async function getUser1WithProfile() {
+async function getUserAndProfile() {
     const getUserOneWithProfile = await prisma.user.findUnique({
         where: {
             id: 1,
@@ -49,6 +49,6 @@ async function deletePost() {
 
 getAllUsers()
 getPosts()
-getUser1WithProfile()
+getUserAndProfile()
 UpdatePost()
 deletePost()
