@@ -31,7 +31,16 @@ const updatePostById = async (postId, changedData) => {
   return data
 }
 
+const deletePostById = async (postId) => {
+  const data = await post.delete({
+    where: { id: postId }
+  })
+  console.log(data)
+  return data
+}
+
 // getAllUsers()
 // getPostsByUserId(2)
 // getProfileById(2)
-updatePostById(1, { content: 'changed content' })
+// updatePostById(1, { content: 'changed content' })
+deletePostById(3)
