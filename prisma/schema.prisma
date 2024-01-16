@@ -16,7 +16,9 @@ model User {
   username    String    @db.VarChar(10) @unique
   email       String    @unique
   password    String?
-  profile     Profile?    
+  profile     Profile? 
+  posts       Post[]  
+  comments    Comment[] 
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
 }
@@ -30,3 +32,28 @@ model Profile {
   createdAt   DateTime  @default(now())	  
   updatedAt   DateTime  @updatedAt	 
 }
+
+model Post {
+  id Int @id @default(autoincrement())
+  title String @db.VarChar(150)
+  content String
+  isPublished Boolean @default(false)
+  picture_url String?
+  userId Int
+  user User @relation(fields: [userId], references: [id])
+  comments Comment[]
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+model Comment {
+  id Int @id @default(autoincrement())
+  content String @db.VarChar(250)
+  postId Int
+  post Post @relation(fields: [postId], references: [id])
+  userId Int
+  user User @relation(fields: [userId], references: [id])
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
