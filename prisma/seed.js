@@ -128,13 +128,11 @@ async function seed() {
   ];
 
   const commentData = [
-    { contet: "Some comments..." },
-    { contet: "Some comments..." },
-    { contet: "Some comments..." },
-    { contet: "Some comments..." },
+    { content: "Some comments..." },
+    { content: "Some comments..." },
+    { content: "Some comments..." },
+    { content: "Some comments..." },
   ];
-
-
 
   for (let i = 0; i < userData.length; i++) {
     const user = await createUser(userData[i]);
@@ -142,119 +140,22 @@ async function seed() {
       ...profileData[i],
       user: { connect: { id: user.id } },
     };
+
     const postToCreate = {
       ...postData[i],
       user: { connect: { id: user.id } },
     };
+
+    const post = await createPost(postToCreate);
+
     const commentToCreate = {
       ...commentData[i],
       user: { connect: { id: user.id } },
+      post: { connect: { id: post.id } },
     };
     await createProfile(profileToCreate);
-    await createPost(postToCreate);
     await createComment(commentToCreate);
   }
-
-  // await prisma.post.createMany({
-  // data: [
-  //   {
-  //     title: "How to cook rice",
-  //     content:
-  //       "Cooking rice might seem simple, but achieving that fluffy, perfectly cooked grain requires a bit of finesse. Here's a quick guide",
-  //     isPublished: true,
-  //     picture: "some_picture_link",
-  //     user: {
-  //       connect: {
-  //         id: 1,
-  //       },
-  //     },
-  //   },
-  //   {
-  //     title: "How to cook rice",
-  //     content:
-  //       "Cooking rice might seem simple, but achieving that fluffy, perfectly cooked grain requires a bit of finesse. Here's a quick guide",
-  //     isPublished: true,
-  //     picture: "some_picture_link",
-  //     user: {
-  //       connect: {
-  //         id: 1,
-  //       },
-  //     },
-  //   },
-  //   {
-  //     title: "How to cook rice",
-  //     content:
-  //       "Cooking rice might seem simple, but achieving that fluffy, perfectly cooked grain requires a bit of finesse. Here's a quick guide",
-  //     isPublished: true,
-  //     picture: "some_picture_link",
-  //     user: {
-  //       connect: {
-  //         id: 2,
-  //       },
-  //     },
-  //   },
-  //   {
-  //     title: "How to cook rice",
-  //     content:
-  //       "Cooking rice might seem simple, but achieving that fluffy, perfectly cooked grain requires a bit of finesse. Here's a quick guide",
-  //     isPublished: true,
-  //     picture: "some_picture_link",
-  //     user: {
-  //       connect: {
-  //         id: 2,
-  //       },
-  //     },
-  //   },
-  //   {
-  //     title: "How to cook rice",
-  //     content:
-  //       "Cooking rice might seem simple, but achieving that fluffy, perfectly cooked grain requires a bit of finesse. Here's a quick guide",
-  //     isPublished: true,
-  //     picture: "some_picture_link",
-  //     user: {
-  //       connect: {
-  //         id: 3,
-  //       },
-  //     },
-  //   },
-  //   {
-  //     title: "How to cook rice",
-  //     content:
-  //       "Cooking rice might seem simple, but achieving that fluffy, perfectly cooked grain requires a bit of finesse. Here's a quick guide",
-  //     isPublished: true,
-  //     picture: "some_picture_link",
-  //     user: {
-  //       connect: {
-  //         id: 3,
-  //       },
-  //     },
-  //   },
-  //   {
-  //     title: "How to cook rice",
-  //     content:
-  //       "Cooking rice might seem simple, but achieving that fluffy, perfectly cooked grain requires a bit of finesse. Here's a quick guide",
-  //     isPublished: true,
-  //     picture: "some_picture_link",
-  //     user: {
-  //       connect: {
-  //         id: 4,
-  //       },
-  //     },
-  //   },
-  //   {
-  //     title: "How to cook rice",
-  //     content:
-  //       "Cooking rice might seem simple, but achieving that fluffy, perfectly cooked grain requires a bit of finesse. Here's a quick guide",
-  //     isPublished: true,
-  //     picture: "some_picture_link",
-  //     user: {
-  //       connect: {
-  //         id: 4,
-  //       },
-  //     },
-  //   },
-  // ],
-  // });
 
   // Don't edit any of the code below this line
   process.exit(0);
