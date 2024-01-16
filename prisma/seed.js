@@ -75,7 +75,7 @@ async function seed() {
                 title: "Worst workout?",
                 content: "Now I wanna know what the worst hang out is.",
                 isPublished: true,
-                userId: 1
+                userId: 1,
             },
         ],
     });

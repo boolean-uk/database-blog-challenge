@@ -12,36 +12,36 @@ datasource db {
 }
 
 model User {
-  id          Int       @id @default(autoincrement())
-  username    String    @unique @db.VarChar(10)
-  email       String    @unique
-  password    String?    
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
-  profile     Profile?
-  post        Post[]
-  comment     Comment[]
+  id        Int       @id @default(autoincrement())
+  username  String    @unique @db.VarChar(10)
+  email     String    @unique
+  password  String?
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  profile   Profile?
+  post      Post[]
+  comment   Comment[]
 }
 
 model Profile {
-  id          Int       @id @default(autoincrement())
-  firstName   String
-  lastName    String?
-  bio         String    @db.VarChar(120)
-  profilePic  String
-  userId      Int       @unique
-  user        User      @relation(fields: [userId], references: [id])
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
+  id         Int      @id @default(autoincrement())
+  firstName  String
+  lastName   String?
+  bio        String   @db.VarChar(120)
+  profilePic String
+  userId     Int      @unique
+  user       User     @relation(fields: [userId], references: [id])
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
 }
 
 model Post {
   id          Int       @id @default(autoincrement())
   title       String    @db.VarChar(150)
-  content     String   
-  picture     String?     
+  content     String
+  picture     String?
   isPublished Boolean   @default(false)
-  userId      Int       
+  userId      Int
   user        User      @relation(fields: [userId], references: [id])
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
@@ -49,12 +49,12 @@ model Post {
 }
 
 model Comment {
-  id          Int       @id @default(autoincrement())
-  content     String    @db.VarChar(250)
-  postId      Int       
-  post        Post      @relation(fields: [postId], references: [id], onDelete: Cascade)
-  userId      Int       
-  user        User      @relation(fields: [userId], references: [id])
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
+  id        Int      @id @default(autoincrement())
+  content   String   @db.VarChar(250)
+  postId    Int
+  post      Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
+  userId    Int
+  user      User     @relation(fields: [userId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
