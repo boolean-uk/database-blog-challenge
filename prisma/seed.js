@@ -23,6 +23,22 @@ async function seed() {
 
   console.log("user created", theCreatedUser);
 
+  const theCreatedUserWithProfile = await prisma.user.create({
+    data: {
+      username: "theboss",
+      email: "theboss@yahoomail.com",
+      password: "thisis123456",
+      profile: {
+        create: {
+          bio: " I am a developer",
+          profile_pix_url: "image.com",
+        },
+      },
+    },
+  });
+
+  console.log("User with profile created", theCreatedUserWithProfile);
+
   // Don't edit any of the code below this line
   process.exit(0);
 }
