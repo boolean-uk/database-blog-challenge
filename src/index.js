@@ -6,11 +6,21 @@ const getAllUsers = async () => {
   return data
 }
 
-const getPostsByUserId = async (userId) => {
-  const data = await post.findMany({ where: { profileId: userId } })
+const getPostsByUserId = async (profileId) => {
+  const data = await post.findMany({ where: { profileId: profileId } })
   console.log(data)
   return data
 }
 
-getAllUsers()
-getPostsByUserId(2)
+const getProfileById = async (profileId) => {
+  const data = await profile.findUnique({
+    where: { id: profileId },
+    include: { user: true }
+  })
+  console.log(data)
+  return data
+}
+
+// getAllUsers()
+// getPostsByUserId(2)
+getProfileById(2)
