@@ -21,6 +21,17 @@ const getProfileById = async (profileId) => {
   return data
 }
 
+const updatePostById = async (postId, changedData) => {
+  const data = await post.update({
+    where: { id: postId },
+    data: { ...changedData }
+  })
+
+  console.log(data)
+  return data
+}
+
 // getAllUsers()
 // getPostsByUserId(2)
-getProfileById(2)
+// getProfileById(2)
+updatePostById(1, { content: 'changed content' })
