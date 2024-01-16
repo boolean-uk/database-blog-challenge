@@ -82,6 +82,16 @@ async function seed() {
           });
          
           console.log('Created post of user 2', createPost);
+
+
+          const createdComment = await prisma.comment.create({
+            data: {
+              content: "this is my friend profile",
+              postId: 1,
+            },
+          });
+        
+          console.log("Comment for post 1 created", createdComment);
           
   
 

@@ -42,4 +42,14 @@ model Post {
   picture_URL String?
   Profile     Profile? @relation(fields: [profileId], references: [id])
   profileId   Int?
+  comments Comment[]
+}
+
+model Comment {
+  id        Int      @id @default(autoincrement())
+  content   String   @db.VarChar(250)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  post      Post?    @relation(fields: [postId], references: [id])
+  postId    Int?
 }
