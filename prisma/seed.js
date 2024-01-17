@@ -58,13 +58,13 @@ async function seed() {
         picture:
           "https://plus.unsplash.com/premium_photo-1683139918895-06f8f3b9939e?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8ZnJpZWQlMjBjaGlja2VufGVufDB8fDB8fHww",
         isPublished: true,
-        userId: 2,
+        userId: 1,
       },
       {
         title: "Working",
         content: "working on this exercise",
         isPublished: true,
-        userId: 3,
+        userId: 2,
       },
       {
         title: "Reading",
@@ -74,14 +74,26 @@ async function seed() {
         isPublished: true,
         userId: 2,
       },
+      {
+        title: "Studying with us",
+        content: "Come join study with us",
+        isPublished: true,
+        userId: 3,
+      },{
+        title: "Driving",
+        content: "Driving through the dark forest",
+        isPublished: true,
+        userId: 3,
+      }
+
     ],
   });
 
   const createComment = await prisma.comment.createMany({
     data: [
       { content: "nice work", userId: 1, postId: 1 },
-      { content: "Good job", userId: 3, postId: 2 },
-      { content: "lalalalala", userId: 2, postId: 3 },
+      { content: "Good job", userId: 2, postId: 2 },
+      { content: "lalalalala", userId: 3, postId: 3 },
     ],
   });
 
