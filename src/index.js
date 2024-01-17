@@ -14,6 +14,17 @@ async function main() {
     });
 
     console.log("posts of user ID 2", getPost);
+
+    //to Get the user with ID 1 and include their profile in the response
+    const getProfile = await prisma.user.findUnique({
+      where: {
+        id: 1,
+      },
+      include: {
+        profile: true,
+      },
+    });
+    console.log("Profile of userId 1", getProfile);
   } catch (error) {
     console.log("Error executing queries", error);
   }
