@@ -77,6 +77,14 @@ async function seed() {
     ],
   });
 
+  const createComment = await prisma.comment.createMany({
+    data: [
+      { content: "nice work", userId: 1, postId: 1 },
+      { content: "Good job", userId: 3, postId: 2 },
+      { content: "lalalalala", userId: 2, postId: 3 },
+    ],
+  });
+
   // Don't edit any of the code below this line
   process.exit(0);
 }

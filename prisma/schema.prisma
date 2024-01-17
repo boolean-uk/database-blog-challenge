@@ -12,14 +12,15 @@ datasource db {
 }
 
 model User {
-  id        Int      @id @default(autoincrement())
-  username  String   @unique @db.VarChar(10)
-  email     String   @unique
+  id        Int       @id @default(autoincrement())
+  username  String    @unique @db.VarChar(10)
+  email     String    @unique
   password  String?
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
   profile   Profile?
   post      Post[]
+  comment   Comment[]
 }
 
 model Profile {
@@ -35,13 +36,25 @@ model Profile {
 }
 
 model Post {
-  id          Int      @id @default(autoincrement())
-  title       String   @db.VarChar(150)
+  id          Int       @id @default(autoincrement())
+  title       String    @db.VarChar(150)
   content     String
   picture     String?
-  isPublished Boolean  @default(false)
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-  userId      Int     
-  user        User     @relation(fields: [userId], references: [id])
+  isPublished Boolean   @default(false)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  userId      Int
+  user        User      @relation(fields: [userId], references: [id])
+  comment     Comment[]
+}
+
+model Comment {
+  id        Int      @id @default(autoincrement())
+  content   String   @db.VarChar(250)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  userId    Int
+  user      User     @relation(fields: [userId], references: [id])
+  postId    Int
+  Post      Post     @relation(fields: [postId], references: [id])
 }
