@@ -25,6 +25,25 @@ async function main() {
       },
     });
     console.log("Profile of userId 1", getProfile);
+
+    //to Update the post with ID 1 so that its text/content is different from what was created in the seed file
+    const updateContent = await prisma.post.update({
+      where: {
+        id: 1,
+      },
+      data: {
+        content: "this has been changed",
+      },
+    });
+    console.log("uppdated content", updateContent);
+
+    //delete the post with id 3
+    const deletePost = await prisma.post.delete({
+      where: {
+        id: 3,
+      },
+    });
+    console.log("deleted Post with ID 3", deletePost);
   } catch (error) {
     console.log("Error executing queries", error);
   }
