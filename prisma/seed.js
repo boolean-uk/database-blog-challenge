@@ -32,6 +32,30 @@ async function seed() {
         ]
     });
 
+    const createdPost = await prisma.post.createMany({
+        data: [
+            {
+                userId: 1,
+                title: 'my first post',
+                content: 'Hello world',
+                isPublished: true
+            },
+            {
+                userId: 1,
+                title: 'my second post',
+                content: 'Hello world again',
+                isPublished: true
+            },
+            {
+                userId: 2,
+                title: 'car for sale',
+                content: 'brand new car for just 200.000$',
+                picture: 'https://www.bing.com/images/search?view=detailV2&ccid=QFO8tluH&id=DE430E8D93F7CC61B836C11548AD05AE0A0CC768&thid=OIP.QFO8tluHp1mtzka6uYS3QQHaEo&mediaurl=https%3a%2f%2fag-spots-2018.o.auroraobjects.eu%2f2018%2f04%2f05%2fother%2f2880-1800-crop-lamborghini-urus-c638805042018130138_1.jpg&cdnurl=https%3a%2f%2fth.bing.com%2fth%2fid%2fR.4053bcb65b87a759adce46bab984b741%3frik%3daMcMCq4FrUgVwQ%26pid%3dImgRaw%26r%3d0&exph=1800&expw=2880&q=lamborghini+urus&simid=608015615658911572&FORM=IRPRST&ck=B3AF29E2051BC37589B83AA87E70EA23&selectedIndex=2&itb=0',
+                isPublished: true
+            }
+        ]
+    })
+
 
 
 
