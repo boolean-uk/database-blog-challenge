@@ -5,12 +5,16 @@ async function seed() {
     const createdUsers = await prisma.user.createMany({
         data: [
             {
-                username: "john",
+                username: "John",
                 email: "john34@gmail.com"
             },
             {
-                username: "valentina", 
+                username: "Valentina", 
                 email: "valentinna@gmail.com"
+            },
+            {
+                username: "Maria", 
+                email: "mary@gmail.com"
             }
         ]
     });
@@ -27,6 +31,11 @@ async function seed() {
              {
                 userId: 1,
                 bio: 'I do not have a bio',
+                profilePicture: 'https://www.bing.com/ck/a?!&&p=d30e7ed07a7577e8JmltdHM9MTcwNTcwODgwMCZpZ3VpZD0wZGE5OWU4ZS0zNTFlLTY0ODAtMDNmZC04ZDYwMzRkZjY1YmYmaW5zaWQ9NTQ0Nw&ptn=3&ver=2&hsh=3&fclid=0da99e8e-351e-6480-03fd-8d6034df65bf&u=a1L2ltYWdlcy9zZWFyY2g_cT1wcm9maWxlK3BpY3R1cmVzJmlkPTZFM0ZFNUVGMEQ2NTcyNjExQkFCN0ZBODJDOTA1NEExMEUzQkJGQjImRk9STT1JUUZSQkE&ntb=1'
+             },
+             {
+                userId: 3,
+                bio: 'My name is Maria and I am 22y',
                 profilePicture: 'https://www.bing.com/ck/a?!&&p=d30e7ed07a7577e8JmltdHM9MTcwNTcwODgwMCZpZ3VpZD0wZGE5OWU4ZS0zNTFlLTY0ODAtMDNmZC04ZDYwMzRkZjY1YmYmaW5zaWQ9NTQ0Nw&ptn=3&ver=2&hsh=3&fclid=0da99e8e-351e-6480-03fd-8d6034df65bf&u=a1L2ltYWdlcy9zZWFyY2g_cT1wcm9maWxlK3BpY3R1cmVzJmlkPTZFM0ZFNUVGMEQ2NTcyNjExQkFCN0ZBODJDOTA1NEExMEUzQkJGQjImRk9STT1JUUZSQkE&ntb=1'
              }
         ]
@@ -52,6 +61,24 @@ async function seed() {
                 content: 'brand new car for just 200.000$',
                 picture: 'https://www.bing.com/images/search?view=detailV2&ccid=QFO8tluH&id=DE430E8D93F7CC61B836C11548AD05AE0A0CC768&thid=OIP.QFO8tluHp1mtzka6uYS3QQHaEo&mediaurl=https%3a%2f%2fag-spots-2018.o.auroraobjects.eu%2f2018%2f04%2f05%2fother%2f2880-1800-crop-lamborghini-urus-c638805042018130138_1.jpg&cdnurl=https%3a%2f%2fth.bing.com%2fth%2fid%2fR.4053bcb65b87a759adce46bab984b741%3frik%3daMcMCq4FrUgVwQ%26pid%3dImgRaw%26r%3d0&exph=1800&expw=2880&q=lamborghini+urus&simid=608015615658911572&FORM=IRPRST&ck=B3AF29E2051BC37589B83AA87E70EA23&selectedIndex=2&itb=0',
                 isPublished: true
+            },
+            {
+                userId: 2,
+                title: 'motorcycle for sale',
+                content: 'contact me for more details',
+                isPublished: true
+            },
+            {
+                userId: 3,
+                title: 'Venice trip',
+                content: 'What is the best restaurant in here?',
+                isPublished: true
+            },
+            {
+                userId: 3,
+                title: 'My last day in Venice',
+                content: 'I had an amazing time here. Cannot wait to come back',
+                isPublished: true
             }
         ]
     });
@@ -72,7 +99,12 @@ async function seed() {
                 userId: 2,
                 postId: 1,
                 content: 'me too'
-            }
+            },
+            {
+                userId: 3,
+                postId: 1,
+                content: 'You should try PastaPlace. It is an amazing local restaurant'
+            },
         ]
     })
 
