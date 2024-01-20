@@ -7,9 +7,9 @@ async function main() {
 
 
     const getPostById = await prisma.post.findMany({
-        where: {userId: 2},
+        where: { userId: 2 },
     })
-    console.log('posts of userId 2',getPostById)
+    console.log('posts of userId 2', getPostById)
 
 
     const getUser = await prisma.user.findMany({
@@ -20,7 +20,7 @@ async function main() {
             profile: true
         }
     })
-    console.log('--------',getUser)
+    console.log('--------', getUser)
 
 
     const updatePost = await prisma.post.update({
@@ -32,6 +32,14 @@ async function main() {
         }
     })
     console.log(updatePost)
+
+
+    const deletePost = await prisma.post.delete({
+        where: {
+            id: 3
+        }
+    })
+    console.log(deletePost)
 }
 
 main()
