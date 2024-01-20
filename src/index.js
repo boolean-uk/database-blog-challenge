@@ -10,7 +10,7 @@ async function main() {
         where: {userId: 2},
     })
     console.log('posts of userId 2',getPostById)
-    
+
 
     const getUser = await prisma.user.findMany({
         where: {
@@ -21,6 +21,17 @@ async function main() {
         }
     })
     console.log('--------',getUser)
+
+
+    const updatePost = await prisma.post.update({
+        where: {
+            id: 1
+        },
+        data: {
+            content: 'Welcome to my page!'
+        }
+    })
+    console.log(updatePost)
 }
 
 main()
