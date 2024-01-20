@@ -18,4 +18,15 @@ model User {
   password    String?
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
+  profile     Profile?
+}
+
+model Profile {
+  id               Int         @id  @default(autoincrement())
+  profilePicture   String
+  bio              String     @db.VarChar(120)
+  createdAt        DateTime   @default(now())
+  updatedAt        DateTime   @updatedAt
+  userId           Int        @unique
+  user             User       @relation(fields: [userId], references: [id])
 }
