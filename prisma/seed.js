@@ -30,7 +30,7 @@ async function seed() {
 
       const createProfile1 = await prisma.profile.create({
         data: {
-          biography: 'Biography of Nazar',
+          biography: 'Biography of Loza',
           picture_url: 'picture url for profile',
           user: {
             connect: {
@@ -62,7 +62,7 @@ async function seed() {
     
       const createProfile2 = await prisma.profile.create({
         data: {
-          biography: 'Biography of Bob',
+          biography: 'Biography of Rebca',
           picture_url: 'picture url for profile',
           user: {
             connect: {
@@ -71,7 +71,7 @@ async function seed() {
           },
           posts: {
             create: {
-              title: 'Post of Bob',
+              title: 'Post of Sara',
               content: 'Content for post of Bob',
               picture_url: 'Picture url of bob'
             }
@@ -81,7 +81,7 @@ async function seed() {
     
       const createProfile3 = await prisma.profile.create({
         data: {
-          biography: 'Biography of Papi',
+          biography: 'Biography of Loza',
           picture_url: 'picture url for profile',
           user: {
             connect: {
