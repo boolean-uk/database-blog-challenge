@@ -27,7 +27,6 @@
 | userId            | Int      | @unique                                         |
 | user              | User     | @relation(fields: [userId], references: [id])   |
 
-
 ### Post
 
 | Field      | Type     | Attributes                                      |
