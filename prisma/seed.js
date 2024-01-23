@@ -107,9 +107,9 @@ async function seed() {
       comments: {
         createMany: {
           data: [
-            { content: 'Content of comment 1' },
-            { content: 'Content of comment 2' },
-            { content: 'Content of comment 3' }
+            { content: 'Content of comment 1', userId: 1 },
+            { content: 'Content of comment 2', userId: 2 },
+            { content: 'Content of comment 3', userId: 3 }
           ]
         }
       }
@@ -125,13 +125,14 @@ async function seed() {
       replies: {
         createMany: {
           data: [
-            { content: 'Replies 1', postId: 2 },
-            { content: 'Replies 2', postId: 2 },
-            { content: 'Replies 3', postId: 2 },
-            { content: 'Replies 4', postId: 2 }
+            { content: 'Replies 1', postId: 2, userId: 1 },
+            { content: 'Replies 2', postId: 2, userId: 2 },
+            { content: 'Replies 3', postId: 2, userId: 1 },
+            { content: 'Replies 4', postId: 2, userId: 3 }
           ]
         }
-      }
+      },
+      userId: 1
     }
   })
 
@@ -141,7 +142,8 @@ async function seed() {
     data: {
       content: 'Content of replies',
       postId: 4,
-      commentId: 2
+      commentId: 2,
+      userId: 1
     }
   })
 

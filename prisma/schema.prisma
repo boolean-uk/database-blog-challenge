@@ -2,58 +2,61 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
-  provider = "prisma-client-js"
+    provider = "prisma-client-js"
 }
 
 datasource db {
-  provider          = "postgresql"
-  url               = env("DATABASE_URL")
-  shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
+    provider          = "postgresql"
+    url               = env("DATABASE_URL")
+    shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
 }
 
 model User {
-  id        Int      @id @default(autoincrement())
-  username  String   @unique @db.VarChar(10)
-  age       Int
-  city      String
-  email     String   @unique
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  profile   Profile?
+    id        Int       @id @default(autoincrement())
+    username  String    @unique @db.VarChar(10)
+    age       Int
+    city      String
+    email     String    @unique
+    createdAt DateTime  @default(now())
+    updatedAt DateTime  @updatedAt
+    profile   Profile?
+    comments  Comment[]
 }
 
 model Profile {
-  id          Int      @id @default(autoincrement())
-  picture_url String
-  biography   String   @db.VarChar(120)
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-  user        User     @relation(fields: [user_id], references: [id])
-  user_id     Int      @unique
-  posts       Post[]
+    id          Int      @id @default(autoincrement())
+    picture_url String
+    biography   String   @db.VarChar(120)
+    createdAt   DateTime @default(now())
+    updatedAt   DateTime @updatedAt
+    user        User     @relation(fields: [user_id], references: [id])
+    user_id     Int      @unique
+    posts       Post[]
 }
 
 model Post {
-  id          Int       @id @default(autoincrement())
-  title       String    @db.VarChar(150)
-  content     String
-  is_publish  Boolean   @default(false)
-  picture_url String?
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
-  Profile     Profile?  @relation(fields: [profileId], references: [id])
-  profileId   Int?
-  comments    Comment[]
+    id          Int       @id @default(autoincrement())
+    title       String    @db.VarChar(150)
+    content     String
+    is_publish  Boolean   @default(false)
+    picture_url String?
+    createdAt   DateTime  @default(now())
+    updatedAt   DateTime  @updatedAt
+    Profile     Profile?  @relation(fields: [profileId], references: [id])
+    profileId   Int?
+    comments    Comment[]
 }
 
 model Comment {
-  id        Int       @id @default(autoincrement())
-  content   String    @db.VarChar(250)
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
-  post      Post?     @relation(fields: [postId], references: [id])
-  postId    Int
-  comment   Comment?  @relation("Replies", fields: [commentId], references: [id])
-  commentId Int?
-  replies   Comment[] @relation("Replies")
+    id        Int       @id @default(autoincrement())
+    content   String    @db.VarChar(250)
+    createdAt DateTime  @default(now())
+    updatedAt DateTime  @updatedAt
+    post      Post?     @relation(fields: [postId], references: [id])
+    postId    Int
+    comment   Comment?  @relation("Replies", fields: [commentId], references: [id])
+    commentId Int?
+    replies   Comment[] @relation("Replies")
+    User      User      @relation(fields: [userId], references: [id])
+    userId    Int
 }
