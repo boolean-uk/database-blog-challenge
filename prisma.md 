@@ -1,0 +1,33 @@
+# Prisma Database Schema and Data Seeding
+
+The database schema is defined using Prisma. The main entities include:
+
+-  User : Represents a user with attributes like `username`, `age`, `city`, and `email`.
+-  Profile : Contains `biography`, `picture_url`, and is associated with a `User`.
+-  Post : Represents a post with `title`, `content`, `picture_url`, and is associated with a `Profile`.
+-  Comment : Represents a comment with `content` and is associated with a `Post`.
+
+Data Seeding
+
+Data seeding is done using the Prisma client. The script creates users, profiles, posts, and comments to populate the database.
+
+User Creation
+
+- Created users with usernames, ages, cities, and emails.
+
+ Profile Creation
+
+- Created profiles with biographies, picture URLs, and associated users.
+- Assigned posts to profiles.
+
+ Post and Comment Creation
+
+- Created posts with titles, content, picture URLs, and associated profiles.
+- Added comments with content and associated posts.
+- Added replies to comments.
+
+-  User : One-to-Many relationship with Profile.
+-  Profile : One-to-Many relationship with Post.
+-  Post : Many-to-One relationship with Profile, Many-to-One relationship with Comment.
+-  Comment : Many-to-One relationship with Post, One-to-Many relationship with Replies.
+
