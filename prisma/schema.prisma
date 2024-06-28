@@ -12,8 +12,49 @@ datasource db {
 }
 
 model User {
+  id          Int         @id @default(autoincrement())
+  username    String      @unique @db.VarChar(10)
+  email       String      @unique
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+  profile     Profile?
+  posts       Post[]
+  comments    Comment[]
+}
+
+model Profile {
   id          Int       @id @default(autoincrement())
-  username    String
+  bio         String    @db.VarChar(120)
+  pictureUrl  String    
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
+  userId      Int       @unique
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Post {
+  id          Int         @id @default(autoincrement())
+  content     String      @db.Text    
+  pictureUrl  String?    
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+  published   Boolean     @default(true)
+  title       String      @db.VarChar(150)
+  userId      Int       
+  user        User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  comments    Comment[]
+}
+
+model Comment {
+  id              Int       @id @default(autoincrement())
+  content         String    @db.VarChar(250)
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+  userId          Int       
+  user            User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  postId          Int       
+  post            Post      @relation(fields: [postId], references: [id], onDelete: Cascade)
+  parentCommentId Int?
+  parentComment   Comment?  @relation("CommentHistory", fields: [parentCommentId], references: [id]) 
+  replies         Comment[] @relation("CommentHistory")
 }
